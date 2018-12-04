@@ -1,0 +1,58 @@
+%YAML:1.0
+
+#--------------------------------------------------------------------------------------------
+# Camera Parameters. Adjust them!
+#--------------------------------------------------------------------------------------------
+
+# Camera calibration and distortion parameters (OpenCV) 
+# 672x376
+# Camera.fx: 349.842499
+# Camera.fy: 349.842499
+# Camera.cx: 341.119995
+# Camera.cy: 194.109497
+# Camera.k1: -0.17193
+# Camera.k2: 0.0243182
+# Camera.p1: 0.0
+# Camera.p2: 0.0
+# Camera.width: 672
+# Camera.height: 376
+# IR projector baseline times fx (aprox.)
+# Camera.bf: 42
+# Close/Far threshold. Baseline times.
+# ThDepth: 40
+
+# 1280x720
+Camera.fx: 699.687
+Camera.fy: 699.687
+Camera.cx: 652.241
+Camera.cy: 374.219
+Camera.k1: -0.17193
+Camera.k2: 0.0243182
+Camera.p1: 0.0
+Camera.p2: 0.0
+Camera.width: 1280
+Camera.height: 720
+# IR projector baseline times fx (aprox.)
+Camera.bf: 84
+# Close/Far threshold. Baseline times.
+ThDepth: 166.0
+
+# 1920x1080
+#Camera.fx: 1399.37
+#Camera.fy: 1399.37
+#Camera.cx: 987.482
+#Camera.cy: 571.438
+#Camera.k1: -0.17193
+#Camera.k2: 0.0243182
+#Camera.p1: 0.0
+#Camera.p2: 0.0
+#Camera.width: 1920
+#Camera.height: 1080
+# IR projector baseline times fx (aprox.)
+#Camera.bf: 168
+# Close/Far threshold. Baseline times.
+#ThDepth: 166.0
+
+
+
+
