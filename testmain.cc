@@ -127,15 +127,18 @@ int main(int argc, char **argv)
 		cv::Point3f tmp2(x2, y2, z2);
 		pointcloud2.push_back(tmp2);
 
-		cout<<"x1 y1 z1"<<endl<<x1<<" "<<y1<<" "<<z1<<endl;
-		cout<<"x2 y2 z2"<<endl<<x2<<" "<<y2<<" "<<z2<<endl;
+		//cout<<"x1 y1 z1"<<endl<<x1<<" "<<y1<<" "<<z1<<endl;
+		//cout<<"x2 y2 z2"<<endl<<x2<<" "<<y2<<" "<<z2<<endl;
 	}
 	
 	///////////////////////////////////////////////////////////////////////////////////计算第二帧到第一帧的位姿变换//////////////////////////////////////////////////////////////////////////////////////
 	cv::Mat R, t;	//定义第二帧到第一帧的旋转和平移矩阵
-	pose_svd_3d3d(pointcloud1, pointcloud2, R, t);
+	cv::Vec3d Eal;
+	pose_svd_3d3d(pointcloud1, pointcloud2, R, t, Eal);
 	cout<<"1 to 2 R is:"<<endl;
 	cout<< R<<endl;
+	cout<<"1 to 2 R-Y-P is:"<<endl;
+	cout<< Eal <<endl;
 	cout<<"t is:"<<endl;
 	cout<< t<<endl;
 

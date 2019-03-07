@@ -1,14 +1,18 @@
 #include <opencv2/opencv.hpp>
 #include <Eigen/Dense>
+#include <Eigen/Core>  
+#include <Eigen/Geometry>  
 #include <iostream>
 #include <vector>
 #include "vo_svd.h"
+
+#define PI (3.1415926535897932346f)  
 //这个工程会用到Opencv以及eigen两个库
 using namespace std;
 //使用SVD分解矩阵，可以通过匹配好的3D点对，快速求解两帧之间的位姿变化R和t。这里的R和t是第一帧到第二帧中点的坐标变化。当然也可以看多第二帧到第一帧的，位姿变化。
 //其中R=UV^T,t=p-Rp'。其中W=USV^T,W=Q'*Q^T,Q=P-p,Q'=P'-p。p是第一帧的质心坐标，p'是第二帧的质心坐标。
 //输入：pts1前一帧特征点坐标的向量；pts2后遗症特征点坐标的向量；R第二帧到第一帧的姿态旋转矩阵3*3；t第二帧到第一帧的平移向量3*1
-void pose_svd_3d3d(const vector<cv::Point3f>& pts1, const vector<cv::Point3f>& pts2, cv::Mat& R, cv::Mat& t)
+void pose_svd_3d3d(const vector<cv::Point3f>& pts1, const vector<cv::Point3f>& pts2, cv::Mat& R, cv::Mat& t, cv::Vec3d& Eal)
 {
 	cv::Point3f p1, p2;     // p1和p2是两帧的质心三维坐标。由于三维坐标一般以m为单位，所以这离一般用单精度运算。
 	int N = pts1.size();	// 由于两帧匹配的点的数量是一致的，所以向量长度相同
@@ -60,4 +64,11 @@ void pose_svd_3d3d(const vector<cv::Point3f>& pts1, const vector<cv::Point3f>& p
 		);
 	t = (cv::Mat_<double>(3, 1) << t_(0, 0), t_(1, 0), t_(2, 0));
 	t =-1*R*t;
+
+	//R to Eal
+	Eigen::Vector3d ea1 = R_.eulerAngles(0,1,2);       
+    	//cout << ea1/PI*180 << endl << endl;  
+	Eal[0]=ea1[0]/PI*180;
+	Eal[1]=ea1[1]/PI*180;
+	Eal[2]=ea1[2]/PI*180;
 }
